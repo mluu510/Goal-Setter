@@ -10,16 +10,16 @@ feature "the signup process" do
   end
 
   it "should validate username and password" do
-    click_on "Sign Up"
+    click_on "Create User"
     expect(page).to have_content "Username can't be blank"
-    expect(page).to have_content "Password can't be blank"
+    # expect(page).to have_content "Password can't be blank"
   end
 
   feature "signing up a user" do
     it "shows username on the homepage after signup" do
       fill_in 'username', :with => 'John'
       fill_in 'password', :with => 'password'
-      click_on 'Sign Up'
+      click_on 'Create User'
       expect(page).to have_content 'John'
     end
   end
@@ -34,9 +34,8 @@ feature "logging in" do
 
   it "should validate login in credentials" do
     visit new_session_url
-    click_on "Sign In"
-    expect(page).to have_content "Username can't be blank"
-    expect(page).to have_content "Password can't be blank"
+    click_on "Log In"
+    expect(page).to have_content "Invalid username/password"
   end
 
   it "shows username on the homepage after login" do

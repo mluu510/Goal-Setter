@@ -46,12 +46,12 @@ def sign_up(username)
   visit new_user_url
   fill_in "Username", with: username
   fill_in "Password", with: 'password'
-  click_button 'Sign Up'
+  click_button 'Create User'
 end
 
 def sign_in(username)
   visit new_session_url
   fill_in "Username", with: username
   fill_in "Password", with: 'password'
-  click_button 'Sign In'
+  click_button 'Log In'
 end

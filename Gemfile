@@ -44,9 +44,7 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-group :development, :test do
-  gem 'rspec-rails'
-end
+
 
 group :test do
   gem 'guard-rspec'

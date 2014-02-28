@@ -1,9 +1,23 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string(255)      not null
+#  password_digest :string(255)      not null
+#  session_token   :string(255)      not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class User < ActiveRecord::Base
   attr_reader :password
 
   before_validation :ensure_session_token
   validates :username, :session_token, :password_digest, :presence => true
   validates :password, :length => { minimum: 4, allow_nil: true }
+
+  has_many :goals
 
   def password=(plaintext)
     @password = plaintext

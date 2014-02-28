@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228212840) do
+ActiveRecord::Schema.define(version: 20140228230614) do
 
   create_table "goals", force: true do |t|
-    t.string   "title",      null: false
-    t.boolean  "public",     null: false
-    t.integer  "user_id",    null: false
+    t.string   "title",              null: false
+    t.boolean  "viewable_by_others", null: false
+    t.integer  "user_id",            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed"
   end
 
   add_index "goals", ["user_id"], name: "index_goals_on_user_id"

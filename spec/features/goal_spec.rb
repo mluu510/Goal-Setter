@@ -7,13 +7,12 @@ feature 'create goal' do
 
   it 'should require signed in user' do
     click_on 'Sign Out'
-    visit new_goal_url
+    visit new_user_goal_url(1)
     expect(page).to have_content 'User Sign In'
   end
 
   it 'should show goals after creation' do
-    visit new_goal_url
-    fill_in 'Title', :with => 'Lose weight'
+    create_goal('Lose weight', true)
     expect(page).to have_content 'Goals'
     expect(page).to have_content 'Lose weight'
   end
@@ -44,6 +43,10 @@ feature 'show goals' do
 end
 
 feature 'edit goal' do
+  before(:each) do
+    sign_up('John')
+  end
+
   it 'should have an edit goal link' do
     create_goal('Lose weight', true)
     expect(page).to have_content 'Edit'
@@ -61,10 +64,34 @@ feature 'edit goal' do
 end
 
 feature 'delete goal' do
+  before(:each) do
+    sign_up('John')
+  end
+
   it 'should have a delete button and destroy goal when clicked' do
     create_goal('Lose weight', true)
-    expect(page).to have_content 'Delete'
+    expect(page).to have_button 'Delete'
     click_on 'Delete'
     expect(page).to_not have_content 'Lose weight'
   end
 end
+
+feature 'complete goal' do
+  before(:each) do
+    sign_up('John')
+  end
+
+  it 'should update a goal to completed' do
+    create_goal('Lose weight', true)
+    expect(page).to have_button 'Mark as complete'
+    click_on 'Mark as complete'
+    expect(page).to have_content 'Completed: Lose weight'
+  end
+end
+
+
+
+
+
+
+

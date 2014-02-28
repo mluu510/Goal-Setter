@@ -1,0 +1,30 @@
+<% is_owner = @user.id == current_user.id %>
+
+<h1><%= @user.username %>'s Personal Page</h1>
+
+<h2>Public Goals</h2>
+<ul>
+	<% @goals.each do |goal| %>
+	<% next unless goal.viewable_by_others%>
+	<li>
+		<%= goal.completed ? "Completed: #{goal.title}" : goal.title %>
+		<%= render "updategoals", :goal => goal if is_owner %>
+	</li>
+	<% end %>
+</ul>
+
+<% if is_owner %>
+
+<h2>Private Goals</h2>
+<ul>
+	<% @goals.each do |goal| %>
+	<% next if goal.viewable_by_others %>
+	<li>
+		<%= goal.completed ? "Completed: #{goal.title}" : goal.title %>
+		<%= render "updategoals", :goal => goal %>
+	</li>
+	<% end %>
+</ul>
+
+	<%= link_to "Add Goal", new_user_goal_url(@user) %>
+<% end %>

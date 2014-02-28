@@ -56,10 +56,9 @@ def sign_in(username)
   click_button 'Log In'
 end
 
-def create_goal(goal, public)
-  visit new_goal_url
-  if public
-    check('Public')
-  end
+def create_goal(goal, viewable_by_others)
+  click_on 'Add Goal'
   fill_in 'Title', :with => goal
+  check('Public') if viewable_by_others
+  click_button 'Create Goal'
 end

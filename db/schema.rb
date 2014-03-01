@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228230614) do
+ActiveRecord::Schema.define(version: 20140301000624) do
+
+  create_table "goal_comments", force: true do |t|
+    t.string   "body"
+    t.integer  "goal_id"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "goal_comments", ["author_id"], name: "index_goal_comments_on_author_id"
+  add_index "goal_comments", ["goal_id"], name: "index_goal_comments_on_goal_id"
 
   create_table "goals", force: true do |t|
     t.string   "title",              null: false
@@ -23,6 +34,17 @@ ActiveRecord::Schema.define(version: 20140228230614) do
   end
 
   add_index "goals", ["user_id"], name: "index_goals_on_user_id"
+
+  create_table "user_comments", force: true do |t|
+    t.string   "body"
+    t.integer  "victim_id"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_comments", ["author_id"], name: "index_user_comments_on_author_id"
+  add_index "user_comments", ["victim_id"], name: "index_user_comments_on_victim_id"
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false

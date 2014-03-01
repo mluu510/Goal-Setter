@@ -62,3 +62,9 @@ def create_goal(goal, viewable_by_others)
   check('Public') if viewable_by_others
   click_button 'Create Goal'
 end
+
+def add_comment(body)
+  click_on 'Add Comment'
+  fill_in "body", body
+  click_on "Submit Comment"
+end

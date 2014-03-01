@@ -19,6 +19,11 @@ class GoalsController < ApplicationController
     end
   end
 
+  def show
+    get_goal
+    @comments = @goal.comments
+  end
+
   def edit
     get_goal
   end

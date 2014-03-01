@@ -1,0 +1,22 @@
+<h1><%= @goal.title %></h1>
+<h2>By: <%= @goal.user.username %></h2>
+
+<hr>
+
+<h2>Comments</h2>
+<ul>
+	<% @comments.each do |comment| %>
+		<li><%= "#{comment.author.username}: #{comment.body}" %></li>
+	<% end %>
+</ul>
+
+<form action="<%= goal_goal_comments_url(@goal) %>" method="post">
+
+	<input type="hidden" name="authenticity_token"
+		value="<%= form_authenticity_token %>">
+
+	<label for="body">Comment:</label>
+	<input type="text" name="comment[body]" value="" id="body">
+
+	<p><input type="submit" value="Submit Comment"></p>
+</form>

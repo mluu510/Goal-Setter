@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_comments = @user.received_comments
     @goals = @user.goals
   end
 

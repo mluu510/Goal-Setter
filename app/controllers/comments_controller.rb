@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
+    @comment.author_id = current_user.id
 
     if params[:user_id]
       @comment.commentable_id = params[:user_id].to_i

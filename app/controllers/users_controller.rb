@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @goals = @user.goals
+    @comments = @user.comments
   end
 
   private

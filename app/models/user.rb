@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   validates :password, :length => { minimum: 4, allow_nil: true }
 
   has_many :goals
+  has_many :comments, :as => :commentable
 
   def password=(plaintext)
     @password = plaintext
